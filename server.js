@@ -57,7 +57,7 @@ app.post('/send-email', async (req, res) => {
 
         // Email to the firm
         const mailOptionsToFirm = {
-            from: process.env.EMAIL_USER,
+            from: '"Inciarte & Gonzalez Abogados" <info@inciartegonzalez.com>',
             to: process.env.SEND_EMAIL_TO,
             replyTo: email,
             subject: `New Inquiry from Website: ${subject}`,
