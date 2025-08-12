@@ -29,7 +29,7 @@ const transporter = nodemailer.createTransport({
 // Endpoint to handle contact form submissions
 app.post('/send-email', async (req, res) => {
     // Destructure all fields from the body, including the reCAPTCHA token
-    const { name, email, subject, message, 'g-recaptcha-response': recaptchaToken } = req.body;
+    const { name, email, phone, subject, message, 'g-recaptcha-response': recaptchaToken } = req.body;
 
     // 1. VERIFY reCAPTCHA TOKEN
     if (!recaptchaToken) {
@@ -51,7 +51,7 @@ app.post('/send-email', async (req, res) => {
         // 2. IF VERIFICATION SUCCEEDS, PROCEED WITH SENDING EMAIL
 
         // Basic validation for other fields
-        if (!name || !email || !subject || !message) {
+        if (!name || !email || !phone || !subject || !message) {
             return res.status(400).json({ message: 'All fields are required.' });
         }
 
@@ -61,7 +61,7 @@ app.post('/send-email', async (req, res) => {
             to: process.env.SEND_EMAIL_TO,
             replyTo: email,
             subject: `New Inquiry from Website: ${subject}`,
-            html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Subject:</strong> ${subject}</p><p><strong>Message:</strong></p><p>${message}</p>`
+            html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone}</p><p><strong>Subject:</strong> ${subject}</p><p><strong>Message:</strong></p><p>${message}</p>`
         };
 
         // Automatic reply to the client
