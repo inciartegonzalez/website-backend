@@ -57,7 +57,7 @@ app.post('/send-email', async (req, res) => {
 
         // Email to the firm
         const mailOptionsToFirm = {
-            from: '"Inciarte & Gonzalez Abogados" <info@inciartegonzalez.com>',
+            from: '"Inciarte & Gonzalez Abogados" <info@inciartelaw.com>',
             to: process.env.SEND_EMAIL_TO,
             replyTo: email,
             subject: `New Inquiry from Website: ${subject}`,
@@ -66,7 +66,7 @@ app.post('/send-email', async (req, res) => {
 
         // Automatic reply to the client
         const mailOptionsToClient = {
-            from: '"Inciarte & Gonzalez Abogados" <info@inciartegonzalez.com>',
+            from: '"Inciarte & Gonzalez Abogados" <info@inciartelaw.com>',
             to: email,
             subject: 'Thank You for Your Inquiry - Inciarte & Gonzalez Abogados',
             html: `<p>Estimado/a ${name},</p><p>Gracias por contactar a Inciarte & Gonzalez Abogados. Hemos recibido su consulta y nos pondremos en contacto con usted lo antes posible.</p><p>Agradecemos su paciencia.</p><p>Atentamente,</p><p>El Equipo de Inciarte & Gonzalez Abogados</p><p>---</p><p>Dear ${name},</p><p>Thank you for contacting Inciarte & Gonzalez Abogados. We have received your inquiry and will get back to you as soon as possible.</p><p>We appreciate your patience.</p><p>Sincerely,</p><p>The Team at Inciarte & Gonzalez Abogados</p><br>`
